@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Решение алгоритмической задачи</title>
+</head>
+<body>
+  <h1>Решение алгоритмической задачи</h1>
+  <p>Дано вещественное число A.  
+  Вычислить:  
+  если a < 62, то x = a² + 4 + 5,  
+  иначе x = 1/(a²) + 4a + 5</p>
+
+  <form action="https://www.bing.com/search?" id="UserEnter" name="UserEnter" target="_blank">
+    <ul style="list-style:none; padding-left:0;">
+      <li>Для поисковика:
+        <input name="q" value="search">
+      </li>
+      <li>Формулировка задачи: 
+        <br>
+        <textarea cols="60" rows="3" id="task" name="formulation">
+Дано вещественное число A. Вычислить: если a < 62, то x = a² + 4 + 5, иначе x = 1/(a²) + 4a + 5
+        </textarea>
+      </li>
+      <li>
+        а: <input type="number" step="any" id="a" name="a" placeholder="Введите A">
+      </li>
+      <li>
+        Результат решения задачи: 
+        <input id="result" name="result" value="не определён" readonly>
+      </li>
+      <li>
+        <input id="verify" type="button" value="Вычислить">
+      </li>
+      <li>
+        <input id="send" type="button" value="Отправить">
+      </li>
+    </ul>
+  </form>
+
+  <script>
+    let check = false;
+
+    function verify() {
+      const a = parseFloat(document.getElementById('a').value);
+      const resultField = document.getElementById('result');
+
+      if (isNaN(a)) {
+        resultField.value = "Введите число!";
+        check = false;
+        return;
+      }
+
+      let x;
+      if (a < 62) {
+        x = a**2 + 4 + 5;
+      } else {
+        x = 1/(a**2) + 4*a + 5;
+      }
+
+      resultField.value = `x = ${x.toFixed(2)}`;
+      check = true;
+      console.log("Проверено:", resultField.value);
+    }
+
+    function send() {
+      if (check) {
+        document.getElementById('UserEnter').submit();
+      } else {
+        alert("Сначала нажмите 'Вычислить' ");
+      }
+    }
+    document.getElementById("verify").addEventListener("click", verify);
+    document.getElementById("send").addEventListener("click", send);
+  </script>
+</body>
+</html>
